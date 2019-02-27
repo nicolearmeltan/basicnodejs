@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const db = require('../configs/dbConfig');
-const productsRoute = require('../routes/products');
+const db = require('../models/index');
+const productsRoute = require('../routes/item');
 db;
 
 app.use(morgan('dev'));
@@ -24,5 +24,5 @@ app.use((req, res, next) => {
 app.use(productsRoute);
 
 app.listen(3000, () => { 
-    console.log('App Starting ')
+    console.log('App listening at port: 3000')
 });
