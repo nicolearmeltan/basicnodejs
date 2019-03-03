@@ -1,14 +1,16 @@
-const express = require('express');
-var item = express.Router();
+const express = require("express");
+let item = express.Router();
+const items = require('../controllers/itemController');
 
-item
-    .get('/products', (req, res, next) => {
-        res.send('HELLO')
-    })
-    .post('/product',(req, res, next) => {
-        res.send('POST')
-    })
+item.get("/item", items.getAllItem);
 
+item.get("/item/:itemId", items.getItemById);
+
+item.post("/item", items.addItem);
+
+item.put("/item/:itemId", items.updateItem);
+
+item.delete("/item/:itemId", items.deleteItem);
 
 
 module.exports = item;

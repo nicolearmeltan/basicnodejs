@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const itemModel = sequelize.define('itemModel', {
+  const itemModel = sequelize.define('item', {
     itemId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -19,7 +19,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
       allowNull: false
   }
-  }, {});
+  }, 
+  { 
+    deletedAt: 'destroyTime',
+    timestamps: true,
+    freezeTableName: true
+  });
   itemModel.associate = function(models) {
     // associations can be defined here
   };
