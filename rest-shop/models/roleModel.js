@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const roleModel = sequelize.define('role', {
   roleId: {
@@ -13,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   
   }, {});
   roleModel.associate = function(models) {
-    // associations can be defined here
+
   };
   return roleModel;
 };

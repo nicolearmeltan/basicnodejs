@@ -27,6 +27,7 @@ fs
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
+    console.log('has associations')
     db[modelName].associate(db);
   }
 });
@@ -35,6 +36,11 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 db.items = require('./itemModel')(sequelize, Sequelize);
+db.user = require('./userModel')(sequelize, Sequelize);
+db.roles = require('./roleModel')(sequelize, Sequelize);
+
+db.roles.belongsTo(db.user, {foreignKey: 'fk_user_role', targetKey: 'userId'});
+db.user.hasOne(db.roles, {foreignKey: 'fk_user_role', targetKey: 'userId'});
 
 db.sequelize
   .authenticate()
@@ -45,7 +51,7 @@ db.sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   console.log('Database synched')
 })
 

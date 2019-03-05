@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const userModel = sequelize.define('user', {
   userId: {
@@ -26,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true
   });
   userModel.associate = function(models) {
-    // associations can be defined here
+    
   };
   return userModel;
 };
